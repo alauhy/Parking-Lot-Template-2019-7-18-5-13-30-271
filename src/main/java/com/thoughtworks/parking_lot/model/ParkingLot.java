@@ -16,9 +16,18 @@ public class ParkingLot {
     private String address;
     @Transient
     private int validCapacity;
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
     @OneToMany
     @JoinColumn(name = "parkinglot_id")
-    List<Ticket> orders;
+    List<Ticket> tickets;
 
     public int getId() {
         return id;
