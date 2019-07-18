@@ -21,9 +21,11 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -65,6 +67,30 @@ public class ParkingLotAPITest {
         ResultActions resultActions = mvc.perform(delete("/parkinglots/{name}","OOCL parking lot"))
                 .andExpect(status().isAccepted());
 
+
+
+    }
+    @Test
+    void should_show_parkinglot_page() throws Exception{
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.setAddress("ZHA");
+        parkingLot.setName("OOCL parking lot");
+        parkingLot.setCapacity(10);
+        ParkingLot parkingLot1 = new ParkingLot();
+        parkingLot1.setAddress("ZHA");
+        parkingLot1.setName("CS parking lot");
+        parkingLot1.setCapacity(10);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot1);
+
+        when(parkingLotService.paging(anyInt(),anyInt())).thenReturn(parkingLots);
+
+        ResultActions resultActions = mvc.perform(get("/parkinglots?page=0&pageSize=2"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name",is("OOCL parking lot")))
+                .andExpect(jsonPath("$[0].address",is("ZHA")))
+                .andExpect(jsonPath("$[0].capacity",is(10)));
 
 
     }

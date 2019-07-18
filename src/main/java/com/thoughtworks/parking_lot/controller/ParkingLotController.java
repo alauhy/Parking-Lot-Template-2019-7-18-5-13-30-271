@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class ParkingLotController {
     @Autowired
@@ -23,6 +25,12 @@ public class ParkingLotController {
         parkingLotService.delete(name);
         return new ResponseEntity(HttpStatus.ACCEPTED);
     }
+
+    @GetMapping(path = "/parkinglots",params = {"page","pageSize"})
+    public List<ParkingLot> paging(@RequestParam int page,@RequestParam int pageSize) {
+        return parkingLotService.paging(page,pageSize);
+    }
+
 
 
 }

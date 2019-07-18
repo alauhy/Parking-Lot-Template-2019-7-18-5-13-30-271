@@ -3,7 +3,12 @@ package com.thoughtworks.parking_lot.service;
 import com.thoughtworks.parking_lot.model.ParkingLot;
 import com.thoughtworks.parking_lot.repository.ParkingLotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+
+import java.util.List;
 
 @Service
 public class ParkingLotService implements ParkingLotImpl {
@@ -13,6 +18,12 @@ public class ParkingLotService implements ParkingLotImpl {
     @Override
     public ParkingLot save(ParkingLot parkingLot) {
         return parkingLotRepository.save(parkingLot);
+    }
+
+    @Override
+    public List<ParkingLot> paging(int page, int pageSize) {
+        Pageable pageable = new PageRequest (Math.max(0,page-1),pageSize);
+        return parkingLotRepository.findAll(pageable).getContent();
     }
 
     @Override
