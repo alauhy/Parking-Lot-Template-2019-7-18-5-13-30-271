@@ -14,4 +14,5 @@ public interface ParkingLotImpl {
 
     ParkingLot findById(int id);
 
+    ParkingLot update(int id,ParkingLot parkingLot);
 }

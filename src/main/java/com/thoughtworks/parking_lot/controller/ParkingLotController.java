@@ -35,6 +35,10 @@ public class ParkingLotController {
     public ParkingLot findById(@PathVariable int id){
         return parkingLotService.findById(id);
     }
+    @PutMapping("/parkinglots/{id}")
+    public ParkingLot findById(@PathVariable int id,@RequestBody ParkingLot parkingLot){
+        return parkingLotService.update(id,parkingLot);
+    }
 
 
 

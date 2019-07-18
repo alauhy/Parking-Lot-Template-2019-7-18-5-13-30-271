@@ -32,6 +32,12 @@ public class ParkingLotService implements ParkingLotImpl {
     }
 
     @Override
+    public ParkingLot update(int id, ParkingLot parkingLot) {
+        parkingLot.setId(id);
+        return parkingLotRepository.save(parkingLot);
+    }
+
+    @Override
     public void delete(int id) {
         parkingLotRepository.deleteById(id);
     }
