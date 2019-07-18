@@ -1,10 +1,12 @@
-package com.thoughtworks.parking_lot;
+package com.thoughtworks.parking_lot.API;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.thoughtworks.parking_lot.controller.ParkingLotController;
 import com.thoughtworks.parking_lot.model.ParkingLot;
 import com.thoughtworks.parking_lot.service.ParkingLotService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,15 +15,21 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(ParkingLot.class)
+@WebMvcTest(ParkingLotController.class)
 public class ParkingLotAPITest {
 
     @Autowired
@@ -47,6 +55,16 @@ public class ParkingLotAPITest {
                 .andExpect(jsonPath("$.name",is("OOCL parking lot")))
                 .andExpect(jsonPath("$.address",is("ZHA")))
                 .andExpect(jsonPath("$.capacity",is(10)));
+
+
+    }
+
+    @Test
+    void should_delete_parkinglot() throws Exception{
+
+        ResultActions resultActions = mvc.perform(delete("/parkinglots/{name}","OOCL parking lot"))
+                .andExpect(status().isAccepted());
+
 
 
     }
