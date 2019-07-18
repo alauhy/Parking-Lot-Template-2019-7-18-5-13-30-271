@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
@@ -68,12 +69,14 @@ public class ParikinglotRepositoryTest {
         parkingLot1.setAddress("ZHA");
         parkingLotRepository.save(parkingLot);
         parkingLotRepository.save(parkingLot1);
-        Pageable pageable = new PageRequest(1, 1);
+        Pageable pageable = new PageRequest(0, 2, Sort.Direction.DESC,"name");
 
         Page<ParkingLot> parkingLots = parkingLotRepository.findAll(pageable);
-        assertThat(parkingLots.getContent().get(0).getName()).isEqualTo("CS parking lot");
+
+        assertThat(parkingLots.getContent().size()).isEqualTo(2);
+        assertThat(parkingLots.getContent().get(0).getName()).isEqualTo("OOCL parking lot");
         assertThat(parkingLots.getContent().get(0).getAddress()).isEqualTo("ZHA");
-        assertThat(parkingLots.getContent().get(0).getCapacity()).isEqualTo(110);
+        assertThat(parkingLots.getContent().get(0).getCapacity()).isEqualTo(10);
     }
 
 
