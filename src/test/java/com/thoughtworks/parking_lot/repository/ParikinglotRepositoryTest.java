@@ -29,7 +29,7 @@ public class ParikinglotRepositoryTest {
         parkingLot.setAddress("ZHA");
 
         parkingLotRepository.save(parkingLot);
-        ParkingLot parkingLot1 = parkingLotRepository.findByName(parkingLot.getName());
+        ParkingLot parkingLot1 = parkingLotRepository.findById(parkingLot.getId()).get();
 
         assertThat(parkingLot1.getName()).isEqualTo("OOCL parking lot");
         assertThat(parkingLot1.getAddress()).isEqualTo("ZHA");
@@ -37,7 +37,7 @@ public class ParikinglotRepositoryTest {
     }
 
     @Test
-    void should_delete_parkinglot_by_name() {
+    void should_delete_parkinglot_by_id() {
         ParkingLot parkingLot = new ParkingLot();
         parkingLot.setName("OOCL parking lot");
         parkingLot.setCapacity(10);
@@ -49,7 +49,7 @@ public class ParikinglotRepositoryTest {
         parkingLotRepository.save(parkingLot);
         parkingLotRepository.save(parkingLot1);
 
-        parkingLotRepository.deleteByName(parkingLot.getName());
+        parkingLotRepository.deleteById(parkingLot.getId());
         List<ParkingLot> parkingLots = parkingLotRepository.findAll();
 
         assertThat(parkingLots.get(0).getName()).isEqualTo("CS parking lot");

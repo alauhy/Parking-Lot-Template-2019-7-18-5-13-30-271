@@ -8,5 +8,4 @@ import org.springframework.stereotype.Repository;
 public interface ParkingLotRepository extends JpaRepository<ParkingLot, Integer> {
     ParkingLot findByName(String name);
 
-    void deleteByName(String name);
 }

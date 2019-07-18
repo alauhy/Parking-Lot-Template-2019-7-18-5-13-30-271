@@ -64,7 +64,7 @@ public class ParkingLotAPITest {
     @Test
     void should_delete_parkinglot() throws Exception{
 
-        ResultActions resultActions = mvc.perform(delete("/parkinglots/{name}","OOCL parking lot"))
+        ResultActions resultActions = mvc.perform(delete("/parkinglots/{id}",1))
                 .andExpect(status().isAccepted());
 
 
@@ -91,6 +91,24 @@ public class ParkingLotAPITest {
                 .andExpect(jsonPath("$[0].name",is("OOCL parking lot")))
                 .andExpect(jsonPath("$[0].address",is("ZHA")))
                 .andExpect(jsonPath("$[0].capacity",is(10)));
+
+
+    }
+    @Test
+    void should_find_by_name() throws Exception{
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.setAddress("ZHA");
+        parkingLot.setName("OOCL parking lot");
+        parkingLot.setCapacity(10);
+
+
+        when(parkingLotService.findById(anyInt())).thenReturn(parkingLot);
+
+        ResultActions resultActions = mvc.perform(get("/parkinglots/{id}",parkingLot.getId()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name",is("OOCL parking lot")))
+                .andExpect(jsonPath("$.address",is("ZHA")))
+                .andExpect(jsonPath("$.capacity",is(10)));
 
 
     }

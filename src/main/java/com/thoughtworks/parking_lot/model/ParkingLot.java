@@ -1,5 +1,7 @@
 package com.thoughtworks.parking_lot.model;
 
+import org.jboss.logging.MessageLogger;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,12 +9,22 @@ import javax.persistence.*;
 public class ParkingLot {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @Column(unique = true)
     private String name;
     private int capacity;
     private String address;
     @Transient
     private int validCapacity;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getValidCapacity() {
         return validCapacity;

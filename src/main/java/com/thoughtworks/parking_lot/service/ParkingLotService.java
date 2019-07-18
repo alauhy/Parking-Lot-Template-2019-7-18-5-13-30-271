@@ -21,13 +21,18 @@ public class ParkingLotService implements ParkingLotImpl {
     }
 
     @Override
+    public ParkingLot findById(int id) {
+        return parkingLotRepository.findById(id).get();
+    }
+
+    @Override
     public List<ParkingLot> paging(int page, int pageSize) {
         Pageable pageable = new PageRequest (Math.max(0,page-1),pageSize);
         return parkingLotRepository.findAll(pageable).getContent();
     }
 
     @Override
-    public void delete(String name) {
-        parkingLotRepository.deleteByName(name);
+    public void delete(int id) {
+        parkingLotRepository.deleteById(id);
     }
 }

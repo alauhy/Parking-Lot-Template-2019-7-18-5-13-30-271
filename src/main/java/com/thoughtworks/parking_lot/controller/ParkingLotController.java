@@ -20,15 +20,20 @@ public class ParkingLotController {
         return parkingLotService.save(parkingLot);
     }
 
-    @DeleteMapping("/parkinglots/{name}")
-    public ResponseEntity delete(@PathVariable String name) {
-        parkingLotService.delete(name);
+    @DeleteMapping("/parkinglots/{id}")
+    public ResponseEntity delete(@PathVariable int id) {
+        parkingLotService.delete(id);
         return new ResponseEntity(HttpStatus.ACCEPTED);
     }
 
     @GetMapping(path = "/parkinglots",params = {"page","pageSize"})
     public List<ParkingLot> paging(@RequestParam int page,@RequestParam int pageSize) {
         return parkingLotService.paging(page,pageSize);
+    }
+
+    @GetMapping("/parkinglots/{id}")
+    public ParkingLot findById(@PathVariable int id){
+        return parkingLotService.findById(id);
     }
 
 
