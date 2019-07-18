@@ -1,8 +1,7 @@
 package com.thoughtworks.parking_lot.model;
 
-import org.jboss.logging.MessageLogger;
-
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "parkinglot")
@@ -17,6 +16,9 @@ public class ParkingLot {
     private String address;
     @Transient
     private int validCapacity;
+    @OneToMany
+    @JoinColumn(name = "parkinglot_id")
+    List<Ticket> orders;
 
     public int getId() {
         return id;

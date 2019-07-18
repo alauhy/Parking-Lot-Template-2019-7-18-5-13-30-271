@@ -1,0 +1,18 @@
+2019-07-19 00:13:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE OOCL-[*]AGILE-FS.PUBLIC.TICKET ADD COLUMN CAR_NUMBER VARCHAR(255) "; expected "., ADD, SET, RENAME, DROP, CHANGE, MODIFY, ALTER"; SQL statement:
+alter table OOCL-AGILE-FS.PUBLIC.TICKET add column car_number varchar(255) [42001-192]
+2019-07-19 00:13:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE OOCL-[*]AGILE-FS.PUBLIC.TICKET ADD COLUMN CREATE_TIME BIGINT NOT NULL "; expected "., ADD, SET, RENAME, DROP, CHANGE, MODIFY, ALTER"; SQL statement:
+alter table OOCL-AGILE-FS.PUBLIC.TICKET add column create_time bigint not null [42001-192]
+2019-07-19 00:13:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE OOCL-[*]AGILE-FS.PUBLIC.TICKET ADD COLUMN LEAVE_TIME BIGINT NOT NULL "; expected "., ADD, SET, RENAME, DROP, CHANGE, MODIFY, ALTER"; SQL statement:
+alter table OOCL-AGILE-FS.PUBLIC.TICKET add column leave_time bigint not null [42001-192]
+2019-07-19 00:13:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE OOCL-[*]AGILE-FS.PUBLIC.TICKET ADD COLUMN CAR_NUMBER VARCHAR(255) "; expected "., ADD, SET, RENAME, DROP, CHANGE, MODIFY, ALTER"; SQL statement:
+alter table OOCL-AGILE-FS.PUBLIC.TICKET add column car_number varchar(255) [42001-192]
+2019-07-19 00:13:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE OOCL-[*]AGILE-FS.PUBLIC.TICKET ADD COLUMN CREATE_TIME BIGINT NOT NULL "; expected "., ADD, SET, RENAME, DROP, CHANGE, MODIFY, ALTER"; SQL statement:
+alter table OOCL-AGILE-FS.PUBLIC.TICKET add column create_time bigint not null [42001-192]
+2019-07-19 00:13:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE OOCL-[*]AGILE-FS.PUBLIC.TICKET ADD COLUMN LEAVE_TIME BIGINT NOT NULL "; expected "., ADD, SET, RENAME, DROP, CHANGE, MODIFY, ALTER"; SQL statement:
+alter table OOCL-AGILE-FS.PUBLIC.TICKET add column leave_time bigint not null [42001-192]
