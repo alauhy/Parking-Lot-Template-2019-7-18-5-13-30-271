@@ -32,7 +32,26 @@ public class ParikinglotRepositoryTest {
         assertThat(parkingLot1.getCapacity()).isEqualTo(10);
     }
 
+    @Test
+    void should_delete_parkinglot_by_name(){
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.setName("OOCL parking lot");
+        parkingLot.setCapacity(10);
+        parkingLot.setAddress("ZHA");
+        ParkingLot parkingLot1 = new ParkingLot();
+        parkingLot1.setName("CS parking lot");
+        parkingLot1.setCapacity(110);
+        parkingLot1.setAddress("ZHA");
+        parkingLotRepository.save(parkingLot);
+        parkingLotRepository.save(parkingLot1);
 
+        parkingLotRepository.deleteByName(parkingLot.getName());
+        List<ParkingLot> parkingLots = parkingLotRepository.findAll();
+
+        assertThat(parkingLots.get(0).getName()).isEqualTo("CS parking lot");
+        assertThat(parkingLots.get(0).getAddress()).isEqualTo("ZHA");
+        assertThat(parkingLots.get(0).getCapacity()).isEqualTo(110);
+    }
 
 
 
